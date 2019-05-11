@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<!-- saved from url=(0038)http://ysx.kleshuo.cn:8081/cc/30020002 -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>-增值税发票选择确认平台(教学系统)</title>
+    <link rel="icon" href="http://ysx.kleshuo.cn:8081/Public/AccountantOperate/img/rzApp.ico">
+    <link rel="stylesheet" href="/Content/assets/info_files/bootstrap.min.css">
+    <link rel="stylesheet" href="/Content/assets/login/kp-main.css">
+    <link rel="stylesheet" href="/Content/assets/login/layer.css" id="layui_layer_skinlayercss">
+    <script src="/Content/layui/layui.all.js"></script> 
+</head>
+
+<body>
+    <div class="kp-wrap">
+        <div class="width-1200">
+            <!--头部-->
+            <div class="header bg-green">
+                <div class="f-l logo">
+                    <img src="/Content/assets/login/logo-cer.png">
+                </div>
+                <div class="f-r user">
+                    <a href="javascript:void(0)" id="gsmc" target="">京州市领先机电设备有限公司</a> &nbsp;|&nbsp; 
+                    <a href="/Views/Authentication/login.html">退出</a>
+                </div>
+                <div class="clear"></div>
+                <ul class="nav">
+                    <li>
+                        <a href="/Views/Authentication/index.html" class="indexcertificate nav1">首页</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/check.html" class="check nav1">发票勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/upload.html" class="upload nav1">批量勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/confirm.html" class="confirm nav1">确认勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/select.html" class="nav1">发票查询</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/count.html" class="count nav1">抵扣统计</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/info.html" class="info nav1">档案信息维护</a>
+                    </li>
+                    <li style="float: right">
+                        <a href="javascript:void(0)"
+                            id="deleteAll">清除历史数据</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--中间内容-->
+            <div class="content bg-f">
+
+                <!--面包屑-->
+                <div class="breadCrumb">
+                    当前位置：<a href="javascript:void(0);">首页</a>
+                </div>
+                <div class="workplat">
+                    <div class="w-title">
+                        工作台
+                    </div>
+                    <div class="w-content">
+                        <div class="w-cont-mark">
+                            <div>
+                                <span class="font-24"></span>
+                                <span class="font-18">
+                                    （当期截至日期为2019年10月22日）
+                                </span>
+
+                            </div>
+                            <ul>
+                                <li>
+                                    <span class="icon-orange"></span> 已过税款所属期
+                                </li>
+                                <li>
+                                    <span class="icon-green"></span> 当前所属期
+                                </li>
+                                <li>
+                                    <span class="icon-gray"></span> 未到税款所属期
+                                </li>
+                            </ul>
+                        </div>
+                        <table style="border-collapse:collapse;">
+                            <tbody>
+                                <tr>
+                                    <td class="icon-orange"><strong>1月</strong></td>
+                                    <td class="icon-orange"><strong>2月</strong></td>
+                                    <td class="icon-orange"><strong>3月</strong></td>
+                                    <td class="icon-orange"><strong>4月</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="icon-orange"><strong>5月</strong></td>
+                                    <td class="icon-orange"><strong>6月</strong></td>
+                                    <td class="icon-orange"><strong>7月</strong></td>
+                                    <td class="icon-orange"><strong>8月</strong></td>
+                                </tr>
+                                <tr>
+                                    <td class="icon-green">
+                                        <strong>9月
+                                        </strong>
+                                    </td>
+                                    <td class="icon-gray"><strong>10月</strong></td>
+                                    <td class="icon-gray"><strong>11月</strong></td>
+                                    <td class="icon-gray"><strong>12月</strong></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="w-bottom"></div>
+                    <div class="w-tips">
+                        注：<br>平台页面显示的当前税款所属期（即，认证月份）勾选、确认截止时间为各省当期的申报截止期，您可在此截止期之前进行当期的勾选和确认操作；当平台获取到您当期申报完成的信息时，将立即开启您下期的勾选确认操作。
+                    </div>
+                </div>
+
+            </div>
+
+            <!--底部-->
+            <div class="footer bg-green">
+                <!--本系统为教学系统，版权归属于我的实务学习云平台-->
+                <!-- 监制单位：国家税务总局电子税务管理中心&nbsp;&nbsp;&nbsp;&nbsp;研发单位：长城计算机软件与系统有限公司<br>请使用IE8及以上浏览器&nbsp;&nbsp;&nbsp;&nbsp;建议分辨率1280*768及以上
+            &nbsp;&nbsp;&nbsp;&nbsp;版本号：<span id="version"></span><br> -->
+            </div>
+        </div>
+    </div>
+    <div class="do-next" style="display: none"></div>
+    <div id="watch_content" class="watch_content">
+        <div class="download" style="float: right;display: none"><a href="http://ysx.kleshuo.cn:8081/cc/30020002"
+                target="_blank" class="btn btn-success">资料下载</a></div>
+        <div class="load_content"></div>
+    </div>
+
+    <script src="/Content/assets/login/jquery.min.js"></script>
+    <script src="/Content/assets/info_files/bootstrap.min.js"></script>
+    <script src="/Content/assets/login/layer.js"></script>
+    <script src="/Content/assets/info_files/bootstrap-datepicker.js"></script>
+    <script>
+        if(sessionStorage.obj == 1){
+            $("#gsmc").html(sessionStorage.qymc);
+            $(".font-24").html("当前税款所属期："+sessionStorage.date)
+
+            $("#deleteAll").click(function(){
+                $.ajax({
+                    type:"get",
+                    dataType:"json",
+                    url:"/RZSX/EmptyHistory",
+                    success:function(){
+                        alert("清除历史数据成功")
+                        window.location.href = "/Views/Authentication/login.html"
+                    }
+                })
+            })
+        }
+        //当前url
+        var url = window.location.href;
+        //遍历
+        $(".nav1").each(function(){
+            //判断点击的a标签地址
+            if(returnUrl($(this).attr("href")) == returnUrl(url)){
+                //为当前选中添加class
+                $(".nav1").removeClass("select");
+                $(this).addClass("select");
+            }
+        });
+        //截取url
+        function returnUrl(href){
+            var number = href.lastIndexOf("/");
+            return href.substring(number + 1);
+        }
+    </script>
+    <!-- <script>
+        $(function () {
+            invoice.init();
+        });
+        var invoice = {
+            init: function () {
+                this.doNext();
+                this.addSelect();            //导航菜单添加选中状态
+                this.initDate();             //初始化日期插件
+                this.checkAll();             //全选事件
+                this.limitNum();              //每页显示数量 改变事件
+                this.deleteAll();              //清除历史数据的点击事件
+            },
+            doNext: function () {
+                $('.do-next').on({
+                    'mouseover': function () {
+                        $(this).css('right', '0px')
+                    },
+                    'mouseout': function () {
+                        $(this).css('right', '-40px')
+                    },
+                    'click': function () {
+                        var firmId = "17";
+                        $.ajax({
+                            url: "/AccountantOperate/IndexCertificate/getMaterial.html",
+                            data: { system: 'cc', firmId: firmId },
+                            type: 'post',
+                            dataType: 'json',
+                            success: function (res) {
+                                if (res.status) {
+                                    var html = res.info.material
+                                    $('.load_content').html(html)
+                                    var url = res.info.url;
+                                    if (url) {
+                                        $('.download a').attr('href', url);
+                                        $('.download').show();
+                                    }
+                                    layer.open({
+                                        type: 1,
+                                        title: '配套资料查看',
+                                        content: $('#watch_content'),
+                                        skin: 'layui-layer-molv',
+                                        area: ['1000px', '80%'],
+                                        shade: 0,   //遮罩阴影
+                                        resize: true,
+                                        moveOut: true,
+                                        maxmin: true
+                                    })
+                                }
+                            }
+                        })
+                    }
+                });
+            },
+            addSelect: function () {
+                var cName = "IndexCertificate".toLowerCase();
+                $("." + cName).addClass("select");
+                $("." + cName).parent().siblings().find("a").removeClass("select");
+            },
+            initDate: function () {
+                $(".datepicker").datepicker({
+                    language: "zh-CN",
+                    autoclose: true,//选中之后自动隐藏日期选择框
+                    format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+                });
+                var firmId = "17";
+                $.ajax({
+                    url: "/AccountantOperate/IndexCertificate/getMaterial.html",
+                    data: { system: 'cc', firmId: firmId },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.status) {
+                            $('.do-next').show()
+                        } else {
+                            $('.do-next').hide()
+                        }
+                    }
+                })
+            },
+            checkAll: function () {
+                $('#checkAll').on('click', function () {
+                    if ($(this).is(':checked')) {
+                        $('input[type="checkbox"]').prop('checked', true);
+                        $('.hideValue').val(1);
+                    } else {
+                        $('input[type="checkbox"]').prop('checked', false);
+                        $('.hideValue').val(0);
+                    }
+                })
+            },
+            limitNum: function () {
+                if ('' != "") {
+                    $('.limitNum').val('');
+                }
+                $(".limitNum").on("change", function () {
+                    var limitNum = $(this).val();
+                    var url = "/AccountantOperate/IndexCertificate/index/limitNum/holder.html";
+                    location.href = url.replace('holder', limitNum);
+                });
+            },
+            deleteAll: function () {
+                $('#deleteAll').on('click', function (event) {
+                    event.preventDefault();
+                    layer.confirm('该操作将会清除当前用户在该系统的所有操作记录，确定要清除吗？', { icon: 7, title: '操作提示' }, function (index) {
+                        //1- 清除所有用户数据， 2-返回登录页面
+                        $.ajax({
+                            url: $('#deleteAll').attr('href'),
+                            type: 'post',
+                            dataType: 'json',
+                            success: function (res) {
+                                if (res.status) {
+                                    layer.msg(res.info, { time: 1500 }, function () {
+                                        location.href = '/cc-logout';
+                                    });
+                                } else {
+                                    layer.msg(res.info);
+                                }
+                            }
+                        });
+                        layer.close(index);
+                    });
+                })
+            }
+        }
+    </script> -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<!-- saved from url=(0035)http://ysx.kleshuo.cn:8081/cc-count -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>-增值税发票选择确认平台(教学系统)</title>
+    <link rel="icon" href="http://ysx.kleshuo.cn:8081/Public/AccountantOperate/img/rzApp.ico">
+    <link rel="stylesheet" href="/Content/assets/info_files/bootstrap.min.css">
+    <link rel="stylesheet" href="/Content/assets/login/kp-main.css">
+    <link rel="stylesheet" href="/Content/assets/login/layer.css" id="layui_layer_skinlayercss">
+    <script src="/Content/layui/layui.all.js"></script> 
+</head>
+
+<body>
+    <div class="kp-wrap">
+        <div class="width-1200">
+            <!--头部-->
+            <div class="header bg-green">
+                <div class="f-l logo">
+                    <img src="/Content/assets/login/logo-cer.png">
+                </div>
+                <div class="f-r user">
+                    <a href="javascript:void(0)" id="gsmc" target="">京州市领先机电设备有限公司</a> &nbsp;|&nbsp; 
+                    <a href="/Views/Authentication/login.html">退出</a>
+                </div>
+                <div class="clear"></div>
+                <ul class="nav">
+                    <li>
+                        <a href="/Views/Authentication/index.html" class="indexcertificate nav1">首页</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/check.html" class="check nav1">发票勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/upload.html" class="upload nav1">批量勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/confirm.html" class="confirm nav1">确认勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/select.html" class="nav1">发票查询</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/count.html" class="count nav1">抵扣统计</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/info.html" class="info nav1">档案信息维护</a>
+                    </li>
+                    <li style="float: right">
+                        <a href="javascript:void(0);"
+                            id="deleteAll">清除历史数据</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--中间内容-->
+            <div class="content bg-f">
+
+                <!--面包屑-->
+                <div class="breadCrumb">
+                    当前位置：<a href="javascript:void(0);">抵扣统计</a>
+                    <a class="f-r help notice-help" href="javascript:;">帮助</a>
+                </div>
+
+                <div class="T-title">
+                    <span class="pad15_r font-16">税款所属期：</span>
+                    <span class="color_3" style="line-height: 30px;">2018年09月</span>
+                    <!--<span style="width: 130px;">-->
+                    <!--<input class="form-control" id="rzyf" style="width: 150px; display: inline;" type="text">-->
+                    <!--</span>-->
+                    <span class="f-r">
+                        <a class="button button-green" href="http://ysx.kleshuo.cn:8081/cc-count">统计查询</a>
+                        <a class="button button-green notice-help" href="javascript:void(0);">打印</a>
+                    </span>
+                </div>
+
+                <div class="text-center" style="display: none;">
+                    <img src="/Content/assets/info_files/loading.gif">
+                    <p class="font_2" style="margin-top: -120px;">正在处理，请稍候...</p>
+                </div>
+
+                <div>
+                    <div id="normal">
+                        <div class="T-title">
+                            <div class="text-center font-16">申报抵扣发票统计表&nbsp;——&nbsp;
+                                <span class="font-16" id="table_text">当期</span>
+                                <span class="font-16" id="tjsj">（报表更新时间：2018年09月）</span>
+                                <!--<span class="font-16" id="tjsj">（报表更新时间：2016-12-06）</span>-->
+                            </div>
+                        </div>
+                        <table width="100%" class="height40">
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <span class="height40 color_2" id="nsrmc1">纳税人名称：京州市领先机电设备有限公司</span>
+                                    </td>
+                                    <td>
+                                        <span class="height40 color_2" id="nsrsbh1">纳税人识别号：91320214313780942L</span>
+                                    </td>
+                                    <td>
+                                        <span class="height40 color_2" id="rzyf1">认证月份：2018年09月</span>
+                                    </td>
+                                    <td align="right">
+                                        <span class="height40 color_2 mar_l_30">单位：（份、元）</span>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div style="width: 100%; overflow-x: auto;">
+                            <table width="100%" class="height40 resulttable" border="1">
+                                <tbody>
+                                    <tr>
+                                        <th width="20%" rowspan="2">
+                                            <div class="out">
+                                                <b>认证方式</b>
+                                                <em style="color: rgb(0, 0, 0);">发票类型</em>
+                                            </div>
+                                        </th>
+                                        <th width="20%" colspan="3">勾选认证</th>
+                                        <th width="20%" colspan="3">扫描认证</th>
+                                        <th width="20%" colspan="3">合计</th>
+                                    </tr>
+                                    <tr>
+                                        <th>份数</th>
+                                        <th>金额</th>
+                                        <th>税额</th>
+                                        <th>份数</th>
+                                        <th>金额</th>
+                                        <th>税额</th>
+                                        <th>份数</th>
+                                        <th>金额</th>
+                                        <th>税额</th>
+                                    </tr>
+                                    <tr id="row_0">
+                                        <td>增值税专用发票</td>
+                                        <td>0</td>
+                                        <td>
+                                            0.00 </td>
+                                        <td>
+                                            0.00 </td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0</td>
+                                        <td>
+                                            0.00 </td>
+                                        <td>
+                                            0.00 </td>
+                                    </tr>
+                                    <tr id="row_1">
+                                        <td>机动车销售统一发票</td>
+                                        <td>0</td>
+                                        <td>
+                                            0.00 </td>
+                                        <td>
+                                            0.00 </td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0</td>
+                                        <td>
+                                            0.00 </td>
+                                        <td>
+                                            0.00 </td>
+                                    </tr>
+                                    <tr id="row_2">
+                                        <td>总计</td>
+                                        <td>0</td>
+                                        <td>
+                                            0.00
+                                            <!--0-->
+                                        </td>
+                                        <td>
+                                            0.00 </td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0</td>
+                                        <td>
+                                            0.00 </td>
+                                        <td>
+                                            0.00 </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="color_3"
+                                style="line-height: 20px; padding-top: 15px; font-size: 14px; margin-top: 20px; border-top-color: currentcolor; border-top-width: 1px; border-top-style: dotted;">
+                                注：
+                                <br>1、本统计表包括指定税款所属期内所有勾选认证和扫描认证的发票。
+                                <br>
+                                <span>2、新增勾选认证和扫描认证数据会触发报表更新。</span>
+                                <br>
+                                <span>3、当天勾选认证数据会准实时在本统计表中体现，当天扫描认证数据会第二天在本统计表中体现，请您关注统计表上方的“报表更新时间”。</span>
+                                <br>
+                                <span>4、若勾选认证栏显示的发票数量少于确认勾选模块中查询到的当期累计确认发票数量，可能是由于同一张发票既勾选认证、又扫描认证了，系统去重导致。</span>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <div class="color_3"
+                        style="line-height: 20px; padding-top: 15px; font-size: 14px; margin-top: 20px; border-top-color: rgb(102, 102, 102); border-top-width: 1px; border-top-style: dotted;">
+                        上述抵扣统计表中包含认证完成后变为异常的发票（不能抵扣用），清单如下：</div>
+                    <div id="abnormal">
+                        <div class="T-title">
+                            <div class="text-center font-16">异常发票清单&nbsp;——&nbsp;
+                                <span class="font-16" id="table_text1">当期</span>
+                            </div>
+                        </div>
+                        <div style="width: 100%; -ms-overflow-x: auto;">
+                            <table width="100%" class="height40 resulttable" border="1">
+                                <tbody>
+                                    <tr>
+                                        <th width="20%" rowspan="2">
+                                            <div class="out">
+                                                <b>认证方式</b>
+                                                <em style="color: rgb(0, 0, 0);">发票类型</em>
+                                            </div>
+                                        </th>
+                                        <th width="20%" colspan="3">勾选认证</th>
+                                        <th width="20%" colspan="3">扫描认证</th>
+                                        <th width="20%" colspan="3">合计</th>
+                                    </tr>
+                                    <tr>
+                                        <th>份数</th>
+                                        <th>金额</th>
+                                        <th>税额</th>
+                                        <th>份数</th>
+                                        <th>金额</th>
+                                        <th>税额</th>
+                                        <th>份数</th>
+                                        <th>金额</th>
+                                        <th>税额</th>
+                                    </tr>
+                                    <tr>
+                                        <td>增值税专用发票</td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>机动车销售统一发票</td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                    </tr>
+                                    <tr>
+                                        <td>总计</td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                        <td>0</td>
+                                        <td>0.00</td>
+                                        <td>0.00</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <div class="color_3"
+                        style="line-height: 20px; padding-top: 15px; margin-top: 20px; border-top-color: rgb(102, 102, 102); border-top-width: 1px; border-top-style: dotted;">
+                        注：
+                        <br>1、本统计表包括指定税款所属期内所有勾选认证和扫描认证的发票。
+                        <br>
+                        <span>2、新增勾选认证和扫描认证数据会触发报表更新。</span>
+                        <br>
+                        <span>3、当天勾选认证数据会准实时在本统计表中体现，当天扫描认证数据会第二天在本统计表中体现，请您关注统计表上方的“报表更新时间”。</span>
+                        <br>
+                        <span>4、若勾选认证栏显示的发票数量少于确认勾选模块中查询到的当期累计确认发票数量，可能是由于同一张发票既勾选认证、又扫描认证了，系统去重导致。</span>
+                    </div>
+                    <br>
+                    <div class="login_word" id="showDetail">
+                        <a class="color_5 font-18" href="javascript:void(0);">查看明细</a>
+                    </div>
+                </div>
+
+                <div id="tip_info" style="display: none;">
+                    <hr class="detail_hr">
+                    <form action="http://ysx.kleshuo.cn:8081/cc-count" method="get">
+                        <div class="height40">
+                            <span class="pad15_r">发票代码：<input class="input_1" type="text" name="code"></span>
+                            <span class="pad15_r">发票号码：<input class="input_1" type="text" name="number"></span>
+                            <span class="pad15_r" id="createDate">开票日期：
+                                <label>
+                                    <input class="form-control datepicker" style="width: 110px; display: inline;"
+                                        type="text" name="createStart"> -
+                                    <input class="form-control datepicker" style="width: 110px; display: inline;"
+                                        type="text" name="createEnd">
+                                </label>
+                            </span>
+                            <span class="pad15_r">销方税号：
+                                <input class="input_1" style="width: 175px;" type="text" name="saler_tax_no">
+                            </span>
+                            <br>
+                            <span class="pad15_r" id="certifyMethod">认证方式：
+                                <label class="pad15_r">
+                                    <input name="" type="radio" value="" checked=""> 全部
+                                </label>
+                                <label class="pad15_r">
+                                    <input name="certify_state" type="radio" value="1" id="confirm_state1">勾选认证
+                                </label>
+                                <label class="pad15_r">
+                                    <input name="scan_state" type="radio" value="1" id="scan_state1">扫描认证
+                                </label>
+                            </span>
+                        </div>
+                        <div class="T-title">
+                            <span class="font-16">查询结果</span>
+                            <span class="f-r" style="margin-top: -10px;">
+                                <input type="submit" class="button button-blue" value="查询">
+                            </span>
+                        </div>
+                    </form>
+
+                    <div class="T-title text-center font-16">
+                        发票清单
+                    </div>
+                    <table width="100%" class="height40" id="tab_title">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <span class="height40 color_2" id="nsrmc2">纳税人名称：京州市领先机电设备有限公司</span>
+                                </td>
+                                <td>
+                                    <span class="height40 color_2" id="nsrsbh2">纳税人识别号：91320214313780942L</span>
+                                </td>
+                                <td>
+                                    <span class="height40 color_2" id="rzyf2">认证月份：2018年09月</span>
+                                </td>
+                                <td align="right" colspan="3">
+                                    <span class="height40 color_2 mar_l_30">单位：（份、元）</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="contentBox" id="tab1">
+                        <section>
+                            <div class="font-16" style="margin: 15px 0;">
+                                <span>每页显示</span>
+                                <select class="limitNum" name="limitNum" id="limitNum">
+                                    <option value="" selected="">5</option>
+                                    <option value="50">50</option>
+                                    <option value="80">80</option>
+                                    <option value="100">100</option>
+                                </select>
+                                <span>条记录</span>
+                            </div>
+                            <table width="100%" class="display nowrap" id="example" cellspacing="0">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 20px;">序号</th>
+                                        <th style="width: 40px;">发票代码</th>
+                                        <th style="width: 40px;">发票号码</th>
+                                        <th style="width: 50px;">开票日期</th>
+                                        <th style="width: 100px;">销方名称</th>
+                                        <th style="width: 60px;">金额</th>
+                                        <th style="width: 60px;">税额</th>
+                                        <th style="width: 40px;">认证方式</th>
+                                        <th style="width: 60px;">确认/认证日期</th>
+                                        <th style="width: 40px;">发票类型</th>
+                                        <th style="width: 40px;">发票状态</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    <tr>
+                                        <td colspan="14">没有符合条件的记录</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                        <div class="text-center ajaxPage" style="margin: 40px 0 20px;" data-totalnum="">
+                        </div>
+                    </div>
+                </div>
+                <div id="file_panle" style="display: none;">
+                    <div class="T-title">
+                        <span class="f-l">抵扣明细文件下载</span>
+                        <div class="clear"></div>
+                    </div>
+                    <a class="color_5 font-18 downfile">
+                        <span class="underline">aaaaaasa.xsl</span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!--底部-->
+            <div class="footer bg-green">
+                <!--本系统为教学系统，版权归属于我的实务学习云平台-->
+                <!-- 监制单位：国家税务总局电子税务管理中心&nbsp;&nbsp;&nbsp;&nbsp;研发单位：长城计算机软件与系统有限公司<br>请使用IE8及以上浏览器&nbsp;&nbsp;&nbsp;&nbsp;建议分辨率1280*768及以上
+            &nbsp;&nbsp;&nbsp;&nbsp;版本号：<span id="version"></span><br> -->
+            </div>
+        </div>
+    </div>
+    <!-- <div class="do-next" style="display: none"></div>
+    <div id="watch_content" class="watch_content">
+        <div class="download" style="float: right;display: none"><a href="http://ysx.kleshuo.cn:8081/cc-count"
+                target="_blank" class="btn btn-success">资料下载</a></div>
+        <div class="load_content"></div>
+    </div> -->
+
+    <script src="/Content/assets/login/jquery.min.js"></script>
+    <script src="/Content/assets/info_files/bootstrap.min.js"></script>
+    <script src="/Content/assets/login/layer.js"></script>
+    <script src="/Content/assets/info_files/bootstrap-datepicker.js"></script>
+    <script>
+        if(sessionStorage.obj == 1){
+            $("#gsmc").html(sessionStorage.qymc);
+
+            $("#deleteAll").click(function(){
+                $.ajax({
+                    type:"get",
+                    dataType:"json",
+                    url:"/RZSX/EmptyHistory",
+                    success:function(){
+                        alert("清除历史数据成功")
+                        window.location.href = "/Views/Authentication/login.html"
+                    }
+                })
+            })
+        }
+        //当前url
+        var url = window.location.href;
+        //遍历
+        $(".nav1").each(function(){
+            //判断点击的a标签地址
+            if(returnUrl($(this).attr("href")) == returnUrl(url)){
+                //为当前选中添加class
+                $(".nav1").removeClass("select");
+                $(this).addClass("select");
+            }
+        });
+        //截取url
+        function returnUrl(href){
+            var number = href.lastIndexOf("/");
+            return href.substring(number + 1);
+        }
+
+        $("#showDetail").on("click", function () {
+            $("#tip_info").show();
+        });
+
+        var certify_method = "";
+        if (certify_method == 1) {
+            $("#confirm_state" + certify_method).attr("checked", true);
+            $("#confirm_state1").parents("label").siblings().find("input").attr("checked", false);
+        }
+        var certify_method2 = "";
+        if (certify_method2 == 1) {
+            $("#scan_state1").attr("checked", true);
+            $("#scan_state1").parents("label").siblings().find("input").attr("checked", false);
+        }
+
+        $("#certifyMethod").on("click", " input", function () {
+            $(this).attr("checked", true);
+            $(this).parents("label").siblings().find("input").attr("checked", false);
+        });
+    //     $(function () {
+    //         invoice.init();
+    //     });
+    //     var invoice = {
+    //         init: function () {
+    //             this.doNext();
+    //             this.addSelect();            //导航菜单添加选中状态
+    //             this.initDate();             //初始化日期插件
+    //             this.checkAll();             //全选事件
+    //             this.limitNum();              //每页显示数量 改变事件
+    //             this.deleteAll();              //清除历史数据的点击事件
+    //         },
+    //         doNext: function () {
+    //             $('.do-next').on({
+    //                 'mouseover': function () {
+    //                     $(this).css('right', '0px')
+    //                 },
+    //                 'mouseout': function () {
+    //                     $(this).css('right', '-40px')
+    //                 },
+    //                 'click': function () {
+    //                     var firmId = "17";
+    //                     $.ajax({
+    //                         url: "/AccountantOperate/Count/getMaterial.html",
+    //                         data: { system: 'cc', firmId: firmId },
+    //                         type: 'post',
+    //                         dataType: 'json',
+    //                         success: function (res) {
+    //                             if (res.status) {
+    //                                 var html = res.info.material
+    //                                 $('.load_content').html(html)
+    //                                 var url = res.info.url;
+    //                                 if (url) {
+    //                                     $('.download a').attr('href', url);
+    //                                     $('.download').show();
+    //                                 }
+    //                                 layer.open({
+    //                                     type: 1,
+    //                                     title: '配套资料查看',
+    //                                     content: $('#watch_content'),
+    //                                     skin: 'layui-layer-molv',
+    //                                     area: ['1000px', '80%'],
+    //                                     shade: 0,   //遮罩阴影
+    //                                     resize: true,
+    //                                     moveOut: true,
+    //                                     maxmin: true
+    //                                 })
+    //                             }
+    //                         }
+    //                     })
+    //                 }
+    //             });
+    //         },
+    //         addSelect: function () {
+    //             var cName = "Count".toLowerCase();
+    //             $("." + cName).addClass("select");
+    //             $("." + cName).parent().siblings().find("a").removeClass("select");
+    //         },
+    //         initDate: function () {
+    //             $(".datepicker").datepicker({
+    //                 language: "zh-CN",
+    //                 autoclose: true,//选中之后自动隐藏日期选择框
+    //                 format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+    //             });
+    //             var firmId = "17";
+    //             $.ajax({
+    //                 url: "/AccountantOperate/Count/getMaterial.html",
+    //                 data: { system: 'cc', firmId: firmId },
+    //                 type: 'post',
+    //                 dataType: 'json',
+    //                 success: function (res) {
+    //                     if (res.status) {
+    //                         $('.do-next').show()
+    //                     } else {
+    //                         $('.do-next').hide()
+    //                     }
+    //                 }
+    //             })
+    //         },
+    //         checkAll: function () {
+    //             $('#checkAll').on('click', function () {
+    //                 if ($(this).is(':checked')) {
+    //                     $('input[type="checkbox"]').prop('checked', true);
+    //                     $('.hideValue').val(1);
+    //                 } else {
+    //                     $('input[type="checkbox"]').prop('checked', false);
+    //                     $('.hideValue').val(0);
+    //                 }
+    //             })
+    //         },
+    //         limitNum: function () {
+    //             if ('' != "") {
+    //                 $('.limitNum').val('');
+    //             }
+    //             $(".limitNum").on("change", function () {
+    //                 var limitNum = $(this).val();
+    //                 var url = "/AccountantOperate/Count/index/limitNum/holder.html";
+    //                 location.href = url.replace('holder', limitNum);
+    //             });
+    //         },
+    //         deleteAll: function () {
+    //             $('#deleteAll').on('click', function (event) {
+    //                 event.preventDefault();
+    //                 layer.confirm('该操作将会清除当前用户在该系统的所有操作记录，确定要清除吗？', { icon: 7, title: '操作提示' }, function (index) {
+    //                     //1- 清除所有用户数据， 2-返回登录页面
+    //                     $.ajax({
+    //                         url: $('#deleteAll').attr('href'),
+    //                         type: 'post',
+    //                         dataType: 'json',
+    //                         success: function (res) {
+    //                             if (res.status) {
+    //                                 layer.msg(res.info, { time: 1500 }, function () {
+    //                                     location.href = '/cc-logout';
+    //                                 });
+    //                             } else {
+    //                                 layer.msg(res.info);
+    //                             }
+    //                         }
+    //                     });
+    //                     layer.close(index);
+    //                 });
+    //             })
+    //         }
+    //     }
+    </script>
+
+    <script>
+    //     $(function () {
+    //         in_count.init();
+    //     });
+    //     var in_count = {
+    //         init: function () {
+    //             this.initData();//初始化数据
+    //             this.showDetail();//查看明细事件
+    //             this.noticeClick();     //提示信息的点击事件
+    //         },
+    //         initData: function () {
+    //             //如果提交查询明细数据 则明细列表内容展开
+    //             var res = location.href.split("?");
+    //             if (res.length > 1) {
+    //                 $("#tip_info").show();
+    //             }
+
+    //             //认证方式
+    //             var certify_method = "";
+    //             if (certify_method == 1) {
+    //                 $("#confirm_state" + certify_method).attr("checked", true);
+    //                 $("#confirm_state1").parents("label").siblings().find("input").attr("checked", false);
+    //             }
+    //             var certify_method2 = "";
+    //             if (certify_method2 == 1) {
+    //                 $("#scan_state1").attr("checked", true);
+    //                 $("#scan_state1").parents("label").siblings().find("input").attr("checked", false);
+    //             }
+
+    //             $("#certifyMethod").on("click", " input", function () {
+    //                 $(this).attr("checked", true);
+    //                 $(this).parents("label").siblings().find("input").attr("checked", false);
+    //             });
+    //         },
+    //         showDetail: function () {
+    //             $("#showDetail").on("click", function () {
+    //                 $("#tip_info").show();
+    //             });
+    //         },
+    //         noticeClick: function () {
+    //             $('.notice-help').on('click', function () {
+    //                 layer.msg('本系统为教学系统，目前只提供常用操作功能噢');
+    //             });
+    //         }
+    //     }
+    </script>
+
+
+</body>
+
+</html>

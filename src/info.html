@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://ysx.kleshuo.cn:8081/cc-info -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>-增值税发票选择确认平台(教学系统)</title>
+    <link rel="icon" href="http://ysx.kleshuo.cn:8081/Public/AccountantOperate/img/rzApp.ico">
+    <link rel="stylesheet" href="/Content/assets/info_files/bootstrap.min.css">
+    <link rel="stylesheet" href="/Content/assets/login/kp-main.css">
+    <link rel="stylesheet" href="/Content/assets/login/layer.css" id="layui_layer_skinlayercss">
+    <script src="/Content/layui/layui.all.js"></script> 
+</head>
+
+<body>
+    <div class="kp-wrap">
+        <div class="width-1200">
+            <!--头部-->
+            <div class="header bg-green">
+                <div class="f-l logo">
+                    <img src="/Content/assets/login/logo-cer.png">
+                </div>
+                <div class="f-r user">
+                    <a href="javascript:void(0)" id="gsmc" target="">京州市领先机电设备有限公司</a> &nbsp;|&nbsp;
+                    <a href="/Views/Authentication/login.html">退出</a>
+                </div>
+                <div class="clear"></div>
+                <ul class="nav">
+                    <li>
+                        <a href="/Views/Authentication/index.html" class="indexcertificate nav1">首页</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/check.html" class="check nav1">发票勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/upload.html" class="upload nav1">批量勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/confirm.html" class="confirm nav1">确认勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/select.html" class="nav1">发票查询</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/count.html" class="count nav1">抵扣统计</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/info.html" class="info nav1">档案信息维护</a>
+                    </li>
+                    <li style="float: right">
+                        <a href="javascript:void(0);"
+                            id="deleteAll">清除历史数据</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--中间内容-->
+            <div class="content bg-f">
+
+                <!--面包屑-->
+                <div class="breadCrumb">
+                    当前位置：<a href="javascript:void(0);">档案信息维护</a>
+                </div>
+
+                <div class="text-center" id="load" style="display: none;">
+                    <img src="/Content/assets/info_files/loading.gif">
+
+                    <p class="font_2" style="margin-top: -120px;">正在处理，请稍候...</p>
+                </div>
+                <div id="infoarea" style="margin-top: 20px;">
+                    <!-- <form class="ajaxForm" action="http://ysx.kleshuo.cn:8081/cc-info" method="post"> -->
+                        <div class="tbbox">
+                            <ul>
+                                <li class="hover">基本信息维护</li>
+                                <li>平台密码维护</li>
+                                <div class="clear"></div>
+                            </ul>
+                        </div>
+                        <div class="conbox2">
+                            <div class="con_tb">
+                                <div class="T-title">
+                                    <span class="font-16">企业基本信息</span>
+                                    <span class="f-r" style="font-size: 12px; font-weight: normal; margin-bottom: 5px;">
+                                        <a class="color_3 notice-help" href="javascript:void(0)">
+                                            <span>企业信用等级修改记录</span>
+                                        </a>
+                                    </span>
+
+                                    <div class="clear"></div>
+                                </div>
+                                <table width="90%" class="height40" style="margin: 0px auto;">
+                                    <tbody>
+                                        <tr>
+                                            <td width="8%" class="text-right">
+                                                <strong>企业名称：</strong>
+                                            </td>
+                                            <td width="42%" id="qymc">京州市领先机电设备有限公司</td>
+                                            <td width="8%" class="text-right">
+                                                <strong>企业税号：</strong>
+                                            </td>
+                                            <td width="42%" id="qysh">91320214313780942L</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>旧税号：</strong>
+                                            </td>
+                                            <td id="oldsh">320214313780942</td>
+                                            <td class="text-right">
+                                                <strong>信用等级：</strong>
+                                            </td>
+                                            <td id="credit">B</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>申报周期：</strong>
+                                            </td>
+                                            <td id="sbzq">月</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <br>
+
+                                <div class="T-title font-16">办税人员信息</div>
+                                <table width="90%" class="height50" style="margin: 0px auto;">
+                                    <tbody>
+                                        <tr>
+                                            <td width="8%" class="text-right">
+                                                <strong><span class="color_3 pad5_r">*</span>姓名：</strong>
+                                            </td>
+                                            <td width="42%">
+                                                <input class="input_1" style="width: 200px;" type="text"
+                                                    name="taxer_name" id="taxer_name" value="">
+                                                <input type="hidden" name="uid" value="37348">
+                                            </td>
+                                            <td width="8%" class="text-right">
+                                                <strong>手机号码：</strong>
+                                            </td>
+                                            <td width="42%">
+                                                <input class="input_1" style="width: 200px;" type="text"
+                                                    name="taxer_tel" value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>邮箱：</strong>
+                                            </td>
+                                            <td>
+                                                <input class="input_1" style="width: 200px;" type="text"
+                                                    name="taxer_email" value="">
+                                            </td>
+                                            <td class="text-right">
+                                                <strong>地址：</strong>
+                                            </td>
+                                            <td>
+                                                <input class="input_1" style="width: 400px;" type="text"
+                                                    name="taxer_address" value="">
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-right">
+                                                <strong>邮编：</strong>
+                                            </td>
+                                            <td>
+                                                <input class="input_1" style="width: 200px;" type="text"
+                                                    name="taxer_ecode" value="">
+                                            </td>
+                                            <td>&nbsp;</td>
+                                            <td>&nbsp;</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="con_tb" style="display: none;">
+                                <div class="T-title">
+                                    <span class="font-16">平台密码修改</span>
+                                    <span class="pad30_r" style="display: inline-block;"></span>
+                                    <span>
+                                        <input name="setState" class="setState" type="radio" id="setRadio1"
+                                            value="1">&nbsp;&nbsp;是<span class="pad30_r"></span>
+                                        <input name="setState" class="setState" type="radio" id="setRadio0"
+                                            checked value="0">&nbsp;&nbsp;否
+                                    </span>
+                                </div>
+                                <table width="90%" class="height40" id="platInfo"
+                                    style="margin: 0px auto;display: none;">
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="2">
+                                                <span style="width: 90px; display: inline-block;">是否启用：</span>
+                                                <span>
+                                                    <input name="plat_pwd_state" class="plat_pwd_state" id="radio1"
+                                                        type="radio" value="1">&nbsp;&nbsp;是
+                                                    <span class="pad30_r"></span>
+                                                    <input name="plat_pwd_state" class="plat_pwd_state" id="radio2"
+                                                        type="radio" checked="" value="0">&nbsp;&nbsp;否
+                                                    <input type="hidden" class="hideState" value="">
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="width: 90px; display: inline-block;">
+                                                    <span class="color_3 pad5_r">*</span>密&nbsp;&nbsp;码:&nbsp;&nbsp;
+                                                </span>
+                                                <span><input class="input_1" type="password" name="plat_pwd" disabled=""
+                                                        style="width: 200px;" value=""></span>
+                                                <span class="explain">6-20位字符,建议由字母/数字/符号两种以上组合</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="width: 90px; display: inline-block;">
+                                                    <span class="color_3 pad5_r">*</span>确认密码：
+                                                </span>
+                                                <span><input class="input_1" type="password" name="re_plat_pwd"
+                                                        disabled="" style="width: 200px;" value=""></span>
+                                                <span class="explain">请再次输入密码</span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="width: 90px; display: inline-block;">
+                                                    <span class="color_3 pad5_r">*</span>提示问题：
+                                                </span>
+                                                <span><input class="input_1" name="plat_question" style="width: 200px;"
+                                                        disabled="" type="text" maxlength="20" value=""></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <span style="width: 90px; display: inline-block;">
+                                                    <span class="color_3 pad5_r">*</span>答案：
+                                                </span>
+                                                <span><input class="input_1" name="plat_answer" style="width: 200px;"
+                                                        disabled="" type="text" maxlength="20" value=""></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="font_1 color_3"
+                                                    style="line-height: 20px; padding-top: 15px; margin-top: 20px; border-top: 1px dotted #666;">
+                                                    <strong>说明：</strong>此平台密码非证书密码，为强化平台安全，启用后需同时输入证书密码与平台密码，无此需求可不启用。
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <br>
+                        <br>
+
+                        <div class="text-center">
+                            <input type="button" class="button button-blue" value="保存">
+                        </div>
+                    <!-- </form> -->
+                </div>
+
+            </div>
+
+            <!--底部-->
+            <div class="footer bg-green">
+                <!--本系统为教学系统，版权归属于我的实务学习云平台-->
+                <!-- 监制单位：国家税务总局电子税务管理中心&nbsp;&nbsp;&nbsp;&nbsp;研发单位：长城计算机软件与系统有限公司<br>请使用IE8及以上浏览器&nbsp;&nbsp;&nbsp;&nbsp;建议分辨率1280*768及以上
+            &nbsp;&nbsp;&nbsp;&nbsp;版本号：<span id="version"></span><br> -->
+            </div>
+        </div>
+    </div>
+    <div class="do-next" style="display: none"></div>
+    <div id="watch_content" class="watch_content">
+        <div class="download" style="float: right;display: none"><a href="http://ysx.kleshuo.cn:8081/cc-info"
+                target="_blank" class="btn btn-success">资料下载</a></div>
+        <div class="load_content"></div>
+    </div>
+
+    <script src="/Content/assets/login/jquery.min.js"></script>
+    <script src="/Content/assets/info_files/bootstrap.min.js"></script>
+    <script src="/Content/assets/login/layer.js"></script>
+    <script src="/Content/assets/info_files/bootstrap-datepicker.js"></script>
+    <script>
+           if(sessionStorage.obj == 1){
+               //公司名称
+               $("#gsmc").html(sessionStorage.qymc);
+               //办税人员信息
+                $("input[name='taxer_name']").val(sessionStorage['name']);
+                $("input[name='taxer_tel']").val(sessionStorage['tel']);
+                $("input[name='taxer_email']").val(sessionStorage['email']);
+                $("input[name='taxer_address']").val(sessionStorage['address']);
+                $("input[name='taxer_ecode']").val(sessionStorage['postcode']);
+                //企业基本信息
+                $("#qymc").html(sessionStorage.qymc);
+                $("#qysh").html(sessionStorage.qysh);
+                $("#oldsh").html(sessionStorage.oldsh);
+                $("#credit").html(sessionStorage.credit);
+                $("#sbzq").html(sessionStorage.sbzq)
+
+                $("#deleteAll").click(function(){
+                    $.ajax({
+                        type:"get",
+                        dataType:"json",
+                        url:"/RZSX/EmptyHistory",
+                        success:function(){
+                            alert("清除历史数据成功")
+                            window.location.href = "/Views/Authentication/login.html"
+                        }
+                    })
+                })
+            }
+        //是否保存个人信息
+        $(".nav1").click(function(event){
+            if(sessionStorage.obj == 0 || sessionStorage.obj == ''){
+                event.preventDefault(); //阻止默认的点击事件
+            }else{
+                
+            }
+        })
+        //保存个人信息
+        $(".button").click(function(){
+            var name = $("input[name='taxer_name']").val();
+            var tel = $("input[name='taxer_tel']").val();
+            var email = $("input[name='taxer_email']").val();
+            var address = $("input[name='taxer_address']").val();
+            var postcode = $("input[name='taxer_ecode']").val();
+            if(name==''){
+                alert('保存信息不能为空')
+            }else{
+                $.ajax({
+                    type: "post",
+                    dataType: "json",
+                    url: "/RZSX/UpdatePersonInfo",
+                    data:{
+                        name:name,
+                        tel:tel,
+                        email:email,
+                        address:address,
+                        postcode:postcode
+                    },
+                    success:function(res){
+                        alert("保存成功");
+                        sessionStorage['name']=name;
+                        sessionStorage['tel']=tel;
+                        sessionStorage['email']=email;
+                        sessionStorage['address']=address;
+                        sessionStorage['postcode']=postcode;
+                        window.location.href = '/Views/Authentication/login.html'
+                    }
+                })
+            }
+        })
+        //当前url
+        var url = window.location.href;
+        //遍历
+        $(".nav1").each(function(){
+            //判断点击的a标签地址
+            if(returnUrl($(this).attr("href")) == returnUrl(url)){
+                //为当前选中添加class
+                $(".nav1").removeClass("select");
+                $(this).addClass("select");
+            }
+        });
+        //截取url
+        function returnUrl(href){
+            var number = href.lastIndexOf("/");
+            return href.substring(number + 1);
+        }
+
+        //平台密码维护
+        //获取tbbox并为它所有的li子级添加click事件
+        $(".tbbox").on("click", "li", function () {
+            //为该元素增加一个class，并把它的兄弟元素去掉class
+            $(this).addClass("hover").siblings().removeClass("hover");
+            //把选中的元素显示，并把它的兄弟元素隐藏
+            $(".conbox2 .con_tb").eq($(this).index()).show().siblings().hide();
+        });
+        //为选中的元素添加点击事件
+        $(".setState").on("click", function () {
+            if ($(this).val() == 1) {
+                $("#platInfo").show();
+            } else {
+                $("#platInfo").hide();
+            }
+        });
+        //是否启用
+        $(".plat_pwd_state").on("click", function () {
+            if ($(this).val() == 1) {
+                $("#platInfo .input_1").removeAttr("disabled");
+            } else {
+                $("#platInfo .input_1").attr("disabled", "disabled");
+            }
+        });
+
+        // var currState = $(".hideState").val();
+        //     if (currState == 1) {
+        //         $("#setRadio1").trigger("click");
+        //         $("#platInfo").show();
+        //         $("#radio1").trigger("click");
+        //         $(".input_1").removeAttr("disabled");
+        //     } else {
+        //         $("#setRadio0").trigger("click");
+        //     }
+    </script>
+    <!-- <script>
+        $(function () {
+            invoice.init();
+        });
+        var invoice = {
+            init: function () {
+                this.doNext();
+                this.addSelect();            //导航菜单添加选中状态
+                this.initDate();             //初始化日期插件
+                this.checkAll();             //全选事件
+                this.limitNum();              //每页显示数量 改变事件
+                this.deleteAll();              //清除历史数据的点击事件
+            },
+            doNext: function () {
+                $('.do-next').on({
+                    'mouseover': function () {
+                        $(this).css('right', '0px')
+                    },
+                    'mouseout': function () {
+                        $(this).css('right', '-40px')
+                    },
+                    'click': function () {
+                        var firmId = "17";
+                        $.ajax({
+                            url: "/AccountantOperate/Info/getMaterial.html",
+                            data: { system: 'cc', firmId: firmId },
+                            type: 'post',
+                            dataType: 'json',
+                            success: function (res) {
+                                if (res.status) {
+                                    var html = res.info.material
+                                    $('.load_content').html(html)
+                                    var url = res.info.url;
+                                    if (url) {
+                                        $('.download a').attr('href', url);
+                                        $('.download').show();
+                                    }
+                                    layer.open({
+                                        type: 1,
+                                        title: '配套资料查看',
+                                        content: $('#watch_content'),
+                                        skin: 'layui-layer-molv',
+                                        area: ['1000px', '80%'],
+                                        shade: 0,   //遮罩阴影
+                                        resize: true,
+                                        moveOut: true,
+                                        maxmin: true
+                                    })
+                                }
+                            }
+                        })
+                    }
+                });
+            },
+            addSelect: function () {
+                var cName = "Info".toLowerCase();
+                $("." + cName).addClass("select");
+                $("." + cName).parent().siblings().find("a").removeClass("select");
+            },
+            initDate: function () {
+                $(".datepicker").datepicker({
+                    language: "zh-CN",
+                    autoclose: true,//选中之后自动隐藏日期选择框
+                    format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+                });
+                var firmId = "17";
+                $.ajax({
+                    url: "/AccountantOperate/Info/getMaterial.html",
+                    data: { system: 'cc', firmId: firmId },
+                    type: 'post',
+                    dataType: 'json',
+                    success: function (res) {
+                        if (res.status) {
+                            $('.do-next').show()
+                        } else {
+                            $('.do-next').hide()
+                        }
+                    }
+                })
+            },
+            checkAll: function () {
+                $('#checkAll').on('click', function () {
+                    if ($(this).is(':checked')) {
+                        $('input[type="checkbox"]').prop('checked', true);
+                        $('.hideValue').val(1);
+                    } else {
+                        $('input[type="checkbox"]').prop('checked', false);
+                        $('.hideValue').val(0);
+                    }
+                })
+            },
+            limitNum: function () {
+                if ('' != "") {
+                    $('.limitNum').val('');
+                }
+                $(".limitNum").on("change", function () {
+                    var limitNum = $(this).val();
+                    var url = "/AccountantOperate/Info/index/limitNum/holder.html";
+                    location.href = url.replace('holder', limitNum);
+                });
+            },
+            deleteAll: function () {
+                $('#deleteAll').on('click', function (event) {
+                    event.preventDefault();
+                    layer.confirm('该操作将会清除当前用户在该系统的所有操作记录，确定要清除吗？', { icon: 7, title: '操作提示' }, function (index) {
+                        //1- 清除所有用户数据， 2-返回登录页面
+                        $.ajax({
+                            url: $('#deleteAll').attr('href'),
+                            type: 'post',
+                            dataType: 'json',
+                            success: function (res) {
+                                if (res.status) {
+                                    layer.msg(res.info, { time: 1500 }, function () {
+                                        location.href = '/cc-logout';
+                                    });
+                                } else {
+                                    layer.msg(res.info);
+                                }
+                            }
+                        });
+                        layer.close(index);
+                    });
+                })
+            }
+        }
+    </script> -->
+
+    <!-- <script>
+        $(function () {
+            in_info.init();
+        });
+        var in_info = {
+            init: function () {
+                this.initData();             //初始化数据
+                this.tabControl();      //tab选项卡控制
+                this.setPwd();          //是否设置平台密码
+                this.usePwd();          //是否启动平台密码
+                this.ajaxForm();
+                this.noticeClick();     //提示信息的点击事件
+            },
+            initData: function () {
+                if ($("#taxer_name").val() == '') {
+                    $(".nav").on("click", "a", function (e) {
+                        e.preventDefault();
+                    });
+                }
+
+                var currState = $(".hideState").val();
+                if (currState == 1) {
+                    $("#setRadio1").trigger("click");
+                    $("#platInfo").show();
+                    $("#radio1").trigger("click");
+                    $(".input_1").removeAttr("disabled");
+                } else {
+                    $("#setRadio0").trigger("click");
+                }
+            },
+            tabControl: function () {
+                $(".tbbox").on("click", "li", function () {
+                    $(this).addClass("hover").siblings().removeClass("hover");
+                    $(".conbox2 .con_tb").eq($(this).index()).show().siblings().hide();
+                });
+            },
+            setPwd: function () {
+                $(".setState").on("click", function () {
+                    if ($(this).val() == 1) {
+                        $("#platInfo").show();
+                    } else {
+                        $("#platInfo").hide();
+                    }
+                });
+            },
+            usePwd: function () {
+                $(".plat_pwd_state").on("click", function () {
+                    if ($(this).val() == 1) {
+                        $("#platInfo .input_1").removeAttr("disabled");
+                    } else {
+                        $("#platInfo .input_1").attr("disabled", "disabled");
+                    }
+                });
+            },
+            ajaxForm: function () {
+                $(".ajaxForm").on("submit", function (event) {
+                    event.preventDefault();
+                    $.ajax({
+                        url: $(this).attr("action"),
+                        type: $(this).attr("method"),
+                        data: $(this).serialize(),
+                        dataType: "json",
+                        success: function (res) {
+                            if (res.status == 0) {
+                                layer.alert(res.info, {
+                                    icon: 5,
+                                    title: '错误提示'
+                                });
+                            } else {
+                                layer.msg(res.info, {
+                                    icon: 6,
+                                    time: 1000
+                                }, function () {
+                                    //location.href = "" + res.url;
+                                    location.href = "/cc-logout";
+                                });
+                            }
+                        },
+                        error: function (res) {
+                            layer.alert("未知错误");
+                        }
+                    });
+                })
+            },
+            noticeClick: function () {
+                $('.notice-help').on('click', function () {
+                    layer.msg('本系统为教学系统，目前只提供常用操作功能噢');
+                });
+            }
+        }
+    </script> -->
+
+
+</body>
+
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<!-- saved from url=(0040)http://ysx.kleshuo.cn:8081/cc-login.html -->
+<html>
+
+<head lang="en">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>增值税发票选择确认平台</title>
+    <link rel="icon" href="http://ysx.kleshuo.cn:8081/Public/AccountantOperate/img/rzApp.ico">
+    <link rel="stylesheet" href="/Content/assets/login/kp-main.css">
+    <link rel="stylesheet" href="/Content/layui/css/layui.css">
+    <script src="/Content/assets/login/jquery.min.js"></script>
+    <script src="/Content/layui/layui.all.js"></script>
+    <style>
+        body .layui-layer-rim {
+            border: 16px solid #add8e6;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="kp-wrap" style="padding-top: 140px">
+        <!--头部-->
+        <div class="bg-f login-head">
+            <div class="width-1200 relative">
+                <div class="f-l">
+                    <img src="/Content/assets/login/login-logo.gif">
+                    <span class="city-name">(汉东 教学系统)</span>
+                </div>
+                <div class="f-r ribbon">
+                    <a href="javascript:void(0);" title="流程指引" class="lczy notice1">
+                        <span>流程指引</span>
+                    </a>
+                    <a href="javascript:void(0);" title="检测环境" class="jchj notice1">
+                        <span>检测环境</span>
+                    </a>
+                    <a href="javascript:void(0);" title="升级公告" class="sjgg notice1">
+                        <span>升级公告</span>
+                    </a>
+                    <a href="javascript:void(0);" title="常见问题" class="cjwt notice1">
+                        <span>常见问题</span>
+                    </a>
+                    <a href="javascript:void(0);" title="操作手册" class="czsc notice1">
+                        <span>操作手册</span>
+                    </a> </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+
+        <!--中间-->
+        <div class="login-cont">
+            <div class="width-1200 relative">
+                <div class="login_box">
+                    <div class="mbbox">
+                        <ul>
+                            <li id="mb2" class="font-18 hover">系统登录</li>
+                        </ul>
+                    </div>
+                    <div class="conbox">
+                        <div id="con_mb_2">
+                            <!-- <form class="loginForm" method="POST"> -->
+                            <div class="pd-vertical-10">
+                                证书密码：<input type="password" class="login_input key" name="certify_pwd"
+                                    style="width:210px;" placeholder="输入税控盘/金税盘证书密码">
+                            </div>
+                            <div class="pd-vertical-10">
+                                <input type="submit" class="sub_1" value="登录">
+                            </div>
+                            <div class="login_word">
+                                <span>证书密码默认为：<a>123456</a></span>
+                            </div>
+                            <!-- </form> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!--底部-->
+        <div class="login-footer bg-f">
+            <div class="width-1200">
+                <!--本系统为教学系统，版权归属于我的实务学习云平台-->
+                本系统为教学系统，版权归属于我的实务学习云平台
+            </div>
+        </div>
+        <!--多企业弹窗-->
+        <div id="chose-trade" class="chose-trade" style="display: none">
+        </div>
+        <div class="do-next" style="display: none"></div>
+        <div id="watch_content" class="watch_content">
+            <div class="download" style="float: right;display: none"><a type="button"
+                    href="http://ysx.kleshuo.cn:8081/cc-login.html" target="_blank" class="layui-btn">资料下载</a></div>
+            <div class="load_content"></div>
+        </div>
+    </div>
+
+    <script>
+        //登录
+        $(".sub_1").click(function () {
+            var password = $(".login_input").val();
+            if (password == "") {
+                alert("密码不能为空");
+            } else if (password == 123456) {
+                $.ajax({
+                    type: "get",
+                    dataType: "json",
+                    url: "/RZSX/GetUserInfo?TAXPAYER_NUMBER=91320214313780942L&userid=36969&kls_companyid=1",
+                    success: function (res) {
+                        console.log(res);
+                        var array = 'string' ?JSON.parse(res):res;
+                        //时间
+                        sessionStorage.date = array[0]['ORIGIN_MONTH']
+                        //企业基本信息
+                        sessionStorage.qymc=array[0]['EnterpriseName'];
+                        sessionStorage.qysh=array[0]['EnterpriseTaxNumber'];
+                        sessionStorage.oldsh=array[0]['OldTaxNumber'];
+                        sessionStorage.credit=array[0]['CreditRating'];
+                        sessionStorage.sbzq=array[0]['ReportingCycle'];
+                        //登录返回值
+                        sessionStorage.obj = array[0]['IsEditInfo'];
+                        //办税人员信息
+                        sessionStorage['name']=array[0]['Name'];
+                        sessionStorage['tel']=array[0]['TEL'];
+                        sessionStorage['email']=array[0]['Email'];
+                        sessionStorage['address']=array[0]['Address'];
+                        sessionStorage['postcode']=array[0]['PostCode'];
+                        if(sessionStorage.obj == 0){
+                            window.location.href = '/Views/Authentication/info.html'
+                        }else{
+                            window.location.href = '/Views/Authentication/index.html'
+                        }
+                    },
+                    error: function (XMLHttpRequest, textStatus, errorThrown) {
+                        console.log(XMLHttpRequest, textStatus, errorThrown);
+                    }
+                })
+            } else {
+                alert("密码错误");
+            }
+        })
+
+        $(".notice1").click(function () {
+            alert("目前不支持该功能")
+        })
+
+        // $(function () {
+        //     layui.use(['layer', 'form'], function () {  
+        //         var layer = layui.layer
+        //             , form = layui.form;
+        //             console.log(layer)
+        //         invoice.init();
+        //     });
+        // });
+        // var invoice = {
+        //     init: function () {
+        //         this.initData();
+        //         this.ajaxLogin();       //
+        //         this.noticeClick();     //信息提示的点击事件
+        //         this.choseTrade();   //选择企业的点击事件
+        //         this.changeTrade();   //切换企业的点击事件
+        //         this.doNext();
+        //     },
+        //     doNext: function () {
+        //         $('.do-next').on({
+        //             'mouseover': function () {
+        //                 $(this).css('right', '0px')
+        //             },
+        //             'mouseout': function () {
+        //                 $(this).css('right', '-40px')
+        //             },
+        //             'click': function () {
+        //                 var firmId = "17";
+        //                 $.ajax({
+        //                     url: "/AccountantOperate/User/getMaterial.html",
+        //                     data: { system: 'cc', firmId: firmId },
+        //                     type: 'post',
+        //                     dataType: 'json',
+        //                     success: function (res) {
+        //                         if (res.status) {
+        //                             var html = res.info.material
+        //                             $('.load_content').html(html)
+        //                             var url = res.info.url;
+        //                             if (url) {
+        //                                 $('.download a').attr('href', url);
+        //                                 $('.download').show();
+        //                             }
+        //                             layer.open({
+        //                                 type: 1,
+        //                                 title: '配套资料查看',
+        //                                 content: $('#watch_content'),
+        //                                 skin: 'layui-layer-molv',
+        //                                 area: ['1000px', '80%'],
+        //                                 shade: 0,   //遮罩阴影
+        //                                 resize: true,
+        //                                 moveOut: true,
+        //                                 maxmin: true
+        //                             })
+        //                         }
+        //                     }
+        //                 })
+        //             }
+        //         });
+        //     },
+        //     initData: function () {
+        //         var trade = '';
+        //         //console.log(trade);
+        //         if (trade) {
+        //             //弹窗选择登录企业
+        //             layer.open({
+        //                 title: '请选择要操作的企业',
+        //                 type: 1,
+        //                 closeBtn: 0,
+        //                 skin: 'layui-layer-lan',
+        //                 area: ['500px'], //宽高
+        //                 content: $('#chose-trade')
+        //             });
+        //         }
+        //         var companyType = "30020002";
+        //         //console.log(companyType);
+        //         if (companyType) {
+        //             $('.change-trade').hide()
+        //         } else {
+        //             $('.change-trade').show()
+        //         }
+
+        //         var firmId = "17";
+        //         $.ajax({
+        //             url: "/AccountantOperate/User/getMaterial.html",
+        //             data: { system: 'cc', firmId: firmId },
+        //             type: 'post',
+        //             dataType: 'json',
+        //             success: function (res) {
+        //                 if (res.status) {
+        //                     $('.do-next').show()
+        //                 } else {
+        //                     $('.do-next').hide()
+        //                 }
+        //             }
+        //         })
+
+        //     },
+        //     choseTrade: function () {
+        //         $('.chose-trade').on('click', '.trade', function () {
+        //             var tradeId = $(this).data('id');
+        //             $.ajax({
+        //                 url: "/AccountantOperate/User/getTrade.html",
+        //                 data: { tradeId: tradeId },
+        //                 type: 'post',
+        //                 dataType: 'json',
+        //                 success: function (res) {
+        //                     if (res.status) {
+        //                         window.location.reload();
+        //                     } else {
+        //                         layer.msg('当前行业未发布企业信息，请联系管理员')
+        //                     }
+        //                 }
+        //             })
+        //         })
+        //     },
+        //     changeTrade: function () {
+        //         $('.change-trade').on('click', function () {
+        //             $.ajax({
+        //                 url: "/AccountantOperate/User/getAllTrade.html",
+        //                 type: 'post',
+        //                 dataType: 'json',
+        //                 success: function (res) {
+        //                     if (res.status) {
+        //                         var info = res.info;
+        //                         //console.log(info);
+        //                         var html = '<div style="text-align: center">';
+        //                         for (var i = 0; i < info.length; i++) {
+        //                             html += "<button data-id='" + info[i].trade_id + "' type='button' class='layui-btn layui-btn-normal layui-btn-fluid trade'>" + info[i].company + '</button>';
+        //                         }
+        //                         html += "</div>";
+        //                         $('#chose-trade').empty().append(html);
+        //                         layer.open({
+        //                             title: '请选择要操作的行业',
+        //                             type: 1,
+        //                             closeBtn: 0,
+        //                             skin: 'layui-layer-lan',
+        //                             area: ['500px'], //宽高
+        //                             content: $('#chose-trade')
+        //                         });
+        //                     }
+        //                 }
+        //             })
+        //         });
+        //     },
+        //     ajaxLogin: function () {
+        //         $(".loginForm").on("submit", function (event) {
+        //             event.preventDefault();
+        //             layer.alert("未知错误");
+        //             // $.ajax({
+        //             //     url: $(this).attr("action"),
+        //             //     type: $(this).attr("method"),
+        //             //     data: $(this).serialize(),
+        //             //     dataType: "json",
+        //             //     success: function (res) {
+        //             //         if (res.status == 0) {
+        //             //             layer.alert(res.info, {
+        //             //                 icon: 5,
+        //             //                 title: '错误提示'
+        //             //             });
+        //             //         } else {
+        //             //             layer.msg(res.info, {
+        //             //                 icon: 6,
+        //             //                 time: 1000
+        //             //             }, function () {
+        //             //                 location.href = "" + res.url;
+        //             //             });
+        //             //         }
+        //             //     },
+        //             //     error: function (res) {
+        //             //         layer.alert("未知错误");
+        //             //     }
+        //             // });
+        //         });
+        //     },
+        //     noticeClick: function () {
+        //         $('.notice1').on('click', function () {
+        //             layer.alert("本系统为教学系统，目前只提供常用操作功能噢");
+        //         });
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

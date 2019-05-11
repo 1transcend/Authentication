@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<!-- saved from url=(0065)http://ysx.kleshuo.cn:8081/AccountantOperate/Check/index/p/1.html -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <title>-增值税发票选择确认平台(教学系统)</title>
+    <link rel="icon" href="http://ysx.kleshuo.cn:8081/Public/AccountantOperate/img/rzApp.ico">
+    <link rel="stylesheet" href="/Content/assets/info_files/bootstrap.min.css">
+    <link rel="stylesheet" href="/Content/assets/login/kp-main.css">
+    <link rel="stylesheet" href="/Content/layui/css/layui.css" id="layui_layer_skinlayercss">
+
+</head>
+
+<body>
+    <div class="kp-wrap">
+        <div class="width-1200">
+            <!--头部-->
+            <div class="header bg-green">
+                <div class="f-l logo">
+                    <img src="/Content/assets/login/logo-cer.png">
+                </div>
+                <div class="f-r user">
+                    <a href="javascript:void(0)" id="gsmc"
+                        target="">京州市领先机电设备有限公司</a> &nbsp;|&nbsp;
+                        <a href="/Views/Authentication/login.html">退出</a>
+                </div>
+                <div class="clear"></div>
+                <ul class="nav">
+                    <li>
+                        <a href="/Views/Authentication/index.html" class="indexcertificate nav1">首页</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/check.html" class="check nav1">发票勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/upload.html" class="upload nav1">批量勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/confirm.html" class="confirm nav1">确认勾选</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/select.html" class="nav1">发票查询</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/count.html" class="count nav1">抵扣统计</a>
+                    </li>
+                    <li>
+                        <a href="/Views/Authentication/info.html" class="info nav1">档案信息维护</a>
+                    </li>
+                    <li style="float: right">
+                        <a href="javascript:void(0);"
+                            id="deleteAll">清除历史数据</a>
+                    </li>
+                </ul>
+            </div>
+
+            <!--中间内容-->
+            <div class="content bg-f">
+
+
+                <!--面包屑-->
+                <div class="breadCrumb">
+                    当前位置：<a href="javascript:void(0);">发票勾选</a>
+                    <a class="f-r help notice-help" href="javascript:;">帮助</a>
+                </div>
+                <form>
+                    <div class="T-title">
+                        <span class="font-16">当前税款所属期：</span>
+                        <span class="color_3 font-16">2018年09月</span>
+                        <!--<span class="color_3 font-16" id="ssq">2019年05月</span>-->
+                        <span class="color_2">(当期可进行勾选操作的截止日期为：2019年10月22日)</span>
+                        <span class="f-r" style="margin-top: -10px;">
+                            <input type="button" class="button button-blue query1" value="查询">
+                        </span>
+                    </div>
+                    <div class="height40">
+                        <span class="pad15_r">发票代码：<input class="input_1" type="text" name="code1"></span>
+                        <span class="pad15_r">发票号码：<input class="input_1" type="text" name="number" value=""></span>
+                        <span class="pad15_r" id="createDate">开票日期：
+                            <label>
+                                <input class="form-control datepicker" style="width: 110px; display: inline;"
+                                    type="text" name="createStart"> -
+                                <input class="form-control datepicker" style="width: 110px; display: inline;"
+                                    type="text" name="createEnd">
+                            </label>
+                        </span>
+                        <span class="pad15_r" id="certifyDate" style="display: none;">确认/扫描日期：
+                            <label>
+                                <input class="form-control datepicker" style="width: 110px; display: inline;"
+                                    type="text" name="certifyStart"> -
+                                <input class="form-control datepicker" style="width: 110px; display: inline;"
+                                    type="text" name="certifyEnd">
+                            </label>
+                        </span>
+                        <span class="pad15_r">销方税号：
+                            <input class="input_1" style="width: 175px;" type="text" name="saler_tax_no">
+                        </span>
+                        <br>
+                        <span class="pad15_r" id="certifyState" checked="checked">认证状态：
+                            <label class="pad15_r">
+                                <input name="certify_state" type="radio" checked="" value="0" id="certifyState0"> 未认证
+                            </label>
+                            <label class="pad15_r">
+                                <input name="certify_state" type="radio" value="1" id="certifyState1"> 已认证
+                            </label>
+                        </span>
+
+                        <div id="checkState">
+                            <span class="pad15_r">勾选状态：
+                                <label class="pad15_r">
+                                    <input name="check_state" type="radio" value="0" id="check_state" checked="checked">
+                                    全部
+                                </label>
+                                <label class="pad15_r">
+                                    <input name="check_state" type="radio" value="1" id="check_state0"> 未勾选
+                                </label>
+                                <label class="pad15_r">
+                                    <input name="check_state" type="radio" value="2" id="check_state1"> 己勾选
+                                </label>
+                            </span>
+                        </div>
+                        <div id="certifyMethod" style="display: none;">
+                            <span class="pad15_r">认证方式：
+                                <label class="pad15_r">
+                                    <input name="confirm_state" type="radio" value="" checked=""> 全部
+                                </label>
+                                <label class="pad15_r">
+                                    <input name="confirm_state" type="radio" value="1" id="confirm_state1">勾选认证
+                                </label>
+                                <label class="pad15_r">
+                                    <input name="confirm_state" type="radio" value="1" id="scan_state1">扫描认证
+                                </label>
+                            </span>
+                        </div>
+                        <div id="panel" style="display: none;">
+                            <span class="pad15_r">发票类型：
+                                <label class="pad15_r">
+                                    <input name="tax_cate" type="radio" checked="checked" value="0" id="tax_cate"> 全部
+                                </label>
+                                <label class="pad15_r">
+                                    <input name="tax_cate" type="radio" value="1" id="tax_cate1"> 增值税专用发票
+                                </label>
+                                <!--  <label class="pad15_r">
+                        <input name="tax_cate" type="radio" value="2" id="tax_cate2"> 货运专用发票
+                    </label>-->
+                                <label class="pad15_r">
+                                    <input name="tax_cate" type="radio" value="2" id="tax_cate2"> 机动车发票
+                                </label>
+                            </span>
+                            <br>
+                            <span class="pad15_r">发票状态：
+                                <label class="pad15_r"><input name="state" type="radio" value="0" checked="checked"
+                                        id="state"> 全部</label>
+                                <label class="pad15_r"><input name="state" type="radio" value="1" id="state1">
+                                    正常</label>
+                                <label class="pad15_r"><input name="state" type="radio" value="2" id="state0">
+                                    作废</label>
+                                <label class="pad15_r"><input name="state" type="radio" value="3" id="state2">
+                                    异常</label>
+                                <label class="pad15_r"><input name="state" type="radio" value="4" id="state3">
+                                    失控</label>
+                                <label class="pad15_r"><input name="state" type="radio" value="5" id="state4">
+                                    红冲</label>
+                            </span>
+                        </div>
+                    </div>
+                    <p class="slide">
+                        <a class="btn-slide active" href="javascript:;">更多查询条件</a>
+                    </p>
+                </form>
+
+                <form class="ajaxForm" action="http://ysx.kleshuo.cn:8081/cc-check" method="post">
+                    <div class="T-title">
+                        <span class="floatl font-16">发票勾选</span>
+                        <span class="color_2" id="gxczfw">
+                            (当期可勾选发票的开票日期范围为：
+                            2017年10月05日-2018年09月30日 )
+                        </span>
+                    </div>
+                    <div class="text-center" id="load" style="display: none;">
+                        <img src="/Content/assets/info_files/loading.gif">
+
+                        <p class="font_2" style="margin-top: -120px;">正在处理，请稍候...</p>
+                    </div>
+                    <div class="contentBox">
+                        <section>
+                            <div class="font-16" style="margin: 15px 0;">
+                                <span>每页显示</span>
+                                <select class="limitNum" name="limitNum" id="limitNum">
+                                    <option value="5" selected="">5</option>
+                                    <option value="10">10</option>
+                                    <option value="15">15</option>
+                                    <option value="20">20</option>
+                                </select>
+                                <span>条记录</span>
+                            </div>
+                            <table class="display nowrap table-bordered" id="example" cellspacing="0"
+                                style="width: 100%">
+                                <thead>
+                                    <tr>
+                                        <th style="padding: 5px">
+                                            <!--<input class="checkall" id="checkAll" type="checkbox">-->勾选
+                                        </th>
+                                        <th>发票代码</th>
+                                        <th>发票号码</th>
+                                        <th style="width: 85px">开票日期</th>
+                                        <th>销方名称</th>
+                                        <th>金额</th>
+                                        <th>税额</th>
+                                        <th style="width: 40px">发票状态</th>
+                                        <th style="width: 40px">是否勾选</th>
+                                        <th style="width: 85px">勾选时间</th>
+                                        <th style="width: 55px">是否勾选认证</th>
+                                        <th style="width: 85px">勾选认证时间</th>
+                                        <th style="width: 55px">是否扫描认证</th>
+                                        <th style="width: 55px">扫描认证时间</th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                    
+                                </tbody>
+                            </table>
+                        </section>
+                        <div class="text-center ajaxPage" style="margin: 40px 0 20px;" data-totalnum="">
+                            <!-- <div class="btn-group" id="fenye_btn"><span class="rows btn btn-primary ">共 8 条记录</span> 
+                                <span class="current btn btn-success am-btn am-btn-success am-btn-xs ">1</span>
+                                <a class="num btn btn-primary am-btn am-btn-primary  am-btn-xs "
+                                    href="http://ysx.kleshuo.cn:8081/AccountantOperate/Check/index/p/2.html">2</a> 
+                                <a class="next btn btn-primary am-btn am-btn-primary am-btn-xs "
+                                    href="http://ysx.kleshuo.cn:8081/AccountantOperate/Check/index/p/2.html">下一页</a>
+                            </div> -->
+                        </div>
+
+                    </div>
+                    <div class="tips color_3">注：
+                        <br>1、对于已勾选、未确认且未扫描认证的发票，您可以在这里撤销已勾选的发票。
+                        <br>2、对于已认证的发票，只能查询当期认证的发票。往期认证和未到认证期的发票，请前往发票查询模块的“单票查询”和“未到期发票”进行查询。
+                        <br>3、当平台获取您当期“已申报”结果时，您申报后勾选未确认的发票将被平台自动撤销勾选标志，同时立即开启您下一所属期的勾选确认操作，请您在下一所属期重新进行勾选及后续的确认操作。
+                    </div>
+                    <br>
+
+                    <div class="text-center" style="clear: both;">
+                        <input type="submit" class="button button-blue" value="保存">
+                    </div>
+                </form>
+
+            </div>
+
+            <!--底部-->
+            <div class="footer bg-green">
+                <!--本系统为教学系统，版权归属于我的实务学习云平台-->
+                <!-- 监制单位：国家税务总局电子税务管理中心&nbsp;&nbsp;&nbsp;&nbsp;研发单位：长城计算机软件与系统有限公司<br>请使用IE8及以上浏览器&nbsp;&nbsp;&nbsp;&nbsp;建议分辨率1280*768及以上
+            &nbsp;&nbsp;&nbsp;&nbsp;版本号：<span id="version"></span><br> -->
+            </div>
+        </div>
+    </div>
+    <div class="do-next" style="display: none"></div>
+    <div id="watch_content" class="watch_content">
+        <div class="download" style="float: right;display: none"><a
+                href="http://ysx.kleshuo.cn:8081/AccountantOperate/Check/index/p/1.html" target="_blank"
+                class="btn btn-success">资料下载</a></div>
+        <div class="load_content"></div>
+    </div>
+
+    <script src="/Content/assets/login/jquery.min.js"></script>
+    <script src="/Content/assets/info_files/bootstrap.min.js"></script>
+    <script src="/Content/assets/info_files/bootstrap-datepicker.js"></script>
+    <script src="/Content/layui/layui.all.js"></script> 
+    <script>
+        var laypage = layui.laypage;
+        if(sessionStorage.obj == 1){
+            $("#gsmc").html(sessionStorage.qymc);
+            $(".font-24").html("当前税款所属期："+sessionStorage.date)
+
+            $("#deleteAll").click(function(){
+                $.ajax({
+                    type:"get",
+                    dataType:"json",
+                    url:"/RZSX/EmptyHistory",
+                    success:function(){
+                        alert("清除历史数据成功")
+                        window.location.href = "/Views/Authentication/login.html"
+                    }
+                })
+            })
+        }
+
+        $(function(){
+            sousuo()       //默认搜索
+        });
+        // function shousuo(code1,number,createStart,createEnd,certifyStart,certifyEnd,saler_tax_no,certify_state,check_state,confirm_state,tax_cate,state,pagesize,pagenum){
+            function sousuo(){
+            var code1 = $("input[name=code1]").val();                       //发票代码
+            var number = $("input[name='number']").val();                   //发票号码
+            var createStart = $("input[name='createStart']").val();         //开票开始时间
+            var createEnd = $("input[name='createEnd']").val();             //开票结束时间    
+            var certifyStart = $("input[name='certifyStart']").val();       //确认/扫描开始日期          
+            var certifyEnd = $("input[name='certifyEnd']").val();           //确认/扫描结束日期    
+            var saler_tax_no = $("input[name='saler_tax_no']").val();       //销方税号      
+            // console.log(code1,number,createStart,createEnd,certifyStart,certifyEnd,saler_tax_no)
+            //单选框
+            var certify_state = $("input[name='certify_state']").val();     //认证状态
+            var check_state = $("input[name='check_state']").val();         //勾选状态
+            var confirm_state = $("input[name='confirm_state']").val();     //认证方式
+            var tax_cate = $("input[name='tax_cate']").val();               //发票类型
+            var state = $("input[name='state']").val();                     //发票状态
+            // console.log(certify_state,check_state,confirm_state,tax_cate,state);
+            //分页
+            var pagesize2 = $("#limitNum option:selected").val();  //每页多少条
+            var pagesize =99999;
+            var pagenum = 1;    //当前页码
+            // console.log(pagesize,pagenum)
+            $.ajax({
+                type:"get",
+                dataType:"json",
+                url:"/RZSX/Query_InvoiceRecord?invoicecode="+code1+"&invoicenum="+number+"&datebegin="+createStart+"&dateend="+(createEnd?createEnd:createStart)+"&certifyStart="+certifyStart+"&certifyEnd="+(certifyEnd)+"&xftaxnum="+saler_tax_no+"&isauth="+certify_state+"&ischeck="+check_state+"&authmethod="+confirm_state+"&invoicetype="+tax_cate+"&invoicestatus="+state+"&pagesize="+pagesize+"&pagenum="+pagenum,
+                success:function(res){
+                    // var data = JSON.parse(res);
+                    var data = res;
+                    console.log(data);
+                    //调用分页
+                    laypage.render({
+                        elem: 'fenye_btn'
+                        ,count: data.length
+                        ,limit:pagesize2
+                        ,groups:2
+                        ,jump: function(obj){
+                        //模拟渲染
+                        $('#example tbody').HTML = function(){
+                            var arr = []
+                            ,thisData = data.concat().splice(obj.curr*pagesize2 - pagesize2, pagesize2);
+                            console.log(thisData)
+                            layui.each(thisData, function(index, item){
+                                var _obj=thisData[index];
+                            arr.push('<tr>'+
+                              '<td><input type="checkbox" value="'+_obj.ID+'" id="'+_obj.ID+'"></td>'+
+                              '<td>'+_obj.InvoiceCode+'</td>'+
+                              '<td>'+_obj.InvoiceNumber+'</td>'+
+                              '<td>'+_obj.InvoiceTime+'</td>'+
+                              '<td style="max-width: 200px">'+_obj.Seller+'</td>'+
+                              '<td>'+_obj.Amount+'</td>'+
+                              '<td>'+_obj.TaxAmount+'</td>'+
+                              '<td>'+
+                                  '<span class="">'+_obj.InvoiceStatus+'</span>'+
+                              '</td>'+
+                              '<td>'+(_obj.isCheck?_obj.isCheck:'否')+'</td>'+
+                              '<td class="check_time">'+(_obj.CheckTime?_obj.CheckTime:'否')+'</td>'+
+                              '<td>'+
+                                  '<span>'+(_obj.isAuthentication?_obj.isAuthentication:'否')+'</span>'+
+                              '</td>'+
+                              '<td class="certify_time">'+(_obj.AuthenticationTime?_obj.AuthenticationTime:'否')+'</td>'+
+                              '<td>'+
+                                  '<span>'+''+'</span>'+
+                              '</td>'+
+                              '<td class="certify_time">'+''+'</td>'+
+                          '</tr>');
+                            });
+                            console.log(arr.join(''));
+                            return arr.join('');
+                        }();
+                        }
+                    });
+  
+
+                    // console.log(data);
+                    // var total = data.length;
+                    // console.log(pagesize,total)
+                    // if(pagesize >= total){
+                    //     $(".btn-group").hide();
+                    // }
+                    // var html='';
+                    // for(var i=0;i<data.length;i++){
+                    //      
+                        // html+=
+                    // }
+                    // $('#example tbody').html(html)
+                    // $(".rows").html('共'+total+'条记录')
+                }
+            })
+        }
+        //查询
+        $(".query1").click(function(){
+            sousuo();
+        });
+        //分页查询
+        $("#limitNum").change(function(){
+            sousuo();
+        })
+        //当前url
+        var url = window.location.href;
+        //遍历
+        $(".nav1").each(function(){
+            //判断点击的a标签地址
+            if(returnUrl($(this).attr("href")) == returnUrl(url)){
+                //为当前选中添加class
+                $(".nav1").removeClass("select");
+                $(this).addClass("select");
+            }
+        });
+        //截取url
+        function returnUrl(href){
+            var number = href.lastIndexOf("/");
+            return href.substring(number + 1);
+        }
+
+        //认证状态
+        $("#certifyState").on("click", "input", function () {
+            if ($(this).val() == 1) {
+                //已认证
+                $("#createDate").hide().siblings("#certifyDate").show();
+                $("#checkState").hide().siblings("#certifyMethod").show();
+                //勾选状态隐藏（已经认证的 必定 勾选）
+                $("#check_state1").attr("checked", true);
+                $("#check_state1").parents("label").siblings().find("input").attr("checked", false);
+            } else {
+                //未认证
+                $("#createDate").show().siblings("#certifyDate").hide();
+                $("#checkState").show().siblings("#certifyMethod").hide();
+                //默认全部
+                $("#check_state").attr("checked", true);
+                $("#check_state").parents("label").siblings().find("input").attr("checked", false);
+            }
+        })
+        //更多查询条件
+        $(".btn-slide").on("click", function () {
+            if ($("#panel").css("display") == "none") {
+                $("#panel").slideDown();
+                $(".btn-slide").removeClass("active");
+            } else {
+                $("#panel").slideUp();
+                $(".btn-slide").addClass("active");
+            }
+
+        });
+        //开票日期
+        $(".datepicker").datepicker({
+            language: "zh-CN",
+            autoclose: true,//选中之后自动隐藏日期选择框
+            format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+        });
+
+        // $(function () {
+        //     invoice.init();
+        // });
+        // var invoice = {
+        //     init: function () {
+        //         this.doNext();
+        //         this.addSelect();            //导航菜单添加选中状态
+        //         this.initDate();             //初始化日期插件
+        //         this.checkAll();             //全选事件
+        //         this.limitNum();              //每页显示数量 改变事件
+        //         this.deleteAll();              //清除历史数据的点击事件
+        //     },
+        //     doNext: function () {
+        //         $('.do-next').on({
+        //             'mouseover': function () {
+        //                 $(this).css('right', '0px')
+        //             },
+        //             'mouseout': function () {
+        //                 $(this).css('right', '-40px')
+        //             },
+        //             'click': function () {
+        //                 var firmId = "17";
+        //                 $.ajax({
+        //                     url: "/AccountantOperate/Check/getMaterial.html",
+        //                     data: { system: 'cc', firmId: firmId },
+        //                     type: 'post',
+        //                     dataType: 'json',
+        //                     success: function (res) {
+        //                         if (res.status) {
+        //                             var html = res.info.material
+        //                             $('.load_content').html(html)
+        //                             var url = res.info.url;
+        //                             if (url) {
+        //                                 $('.download a').attr('href', url);
+        //                                 $('.download').show();
+        //                             }
+        //                             layer.open({
+        //                                 type: 1,
+        //                                 title: '配套资料查看',
+        //                                 content: $('#watch_content'),
+        //                                 skin: 'layui-layer-molv',
+        //                                 area: ['1000px', '80%'],
+        //                                 shade: 0,   //遮罩阴影
+        //                                 resize: true,
+        //                                 moveOut: true,
+        //                                 maxmin: true
+        //                             })
+        //                         }
+        //                     }
+        //                 })
+        //             }
+        //         });
+        //     },
+        //     addSelect: function () {
+        //         var cName = "Check".toLowerCase();
+        //         $("." + cName).addClass("select");
+        //         $("." + cName).parent().siblings().find("a").removeClass("select");
+        //     },
+        //     initDate: function () {
+        //         $(".datepicker").datepicker({
+        //             language: "zh-CN",
+        //             autoclose: true,//选中之后自动隐藏日期选择框
+        //             format: "yyyy-mm-dd"//日期格式，详见 http://bootstrap-datepicker.readthedocs.org/en/release/options.html#format
+        //         });
+        //         var firmId = "17";
+        //         $.ajax({
+        //             url: "/AccountantOperate/Check/getMaterial.html",
+        //             data: { system: 'cc', firmId: firmId },
+        //             type: 'post',
+        //             dataType: 'json',
+        //             success: function (res) {
+        //                 if (res.status) {
+        //                     $('.do-next').show()
+        //                 } else {
+        //                     $('.do-next').hide()
+        //                 }
+        //             }
+        //         })
+        //     },
+        //     checkAll: function () {
+        //         $('#checkAll').on('click', function () {
+        //             if ($(this).is(':checked')) {
+        //                 $('input[type="checkbox"]').prop('checked', true);
+        //                 $('.hideValue').val(1);
+        //             } else {
+        //                 $('input[type="checkbox"]').prop('checked', false);
+        //                 $('.hideValue').val(0);
+        //             }
+        //         })
+        //     },
+        //     limitNum: function () {
+        //         if ('' != "") {
+        //             $('.limitNum').val('');
+        //         }
+        //         $(".limitNum").on("change", function () {
+        //             var limitNum = $(this).val();
+        //             var url = "/AccountantOperate/Check/index/limitNum/holder.html";
+        //             location.href = url.replace('holder', limitNum);
+        //         });
+        //     },
+        //     deleteAll: function () {
+        //         $('#deleteAll').on('click', function (event) {
+        //             event.preventDefault();
+        //             layer.confirm('该操作将会清除当前用户在该系统的所有操作记录，确定要清除吗？', { icon: 7, title: '操作提示' }, function (index) {
+        //                 //1- 清除所有用户数据， 2-返回登录页面
+        //                 $.ajax({
+        //                     url: $('#deleteAll').attr('href'),
+        //                     type: 'post',
+        //                     dataType: 'json',
+        //                     success: function (res) {
+        //                         if (res.status) {
+        //                             layer.msg(res.info, { time: 1500 }, function () {
+        //                                 location.href = '/cc-logout';
+        //                             });
+        //                         } else {
+        //                             layer.msg(res.info);
+        //                         }
+        //                     }
+        //                 });
+        //                 layer.close(index);
+        //             });
+        //         })
+        //     }
+        // }
+    </script>
+
+    <script>
+        // $(function () {
+        //     in_check.init();
+        // });
+        // var in_check = {
+        //     init: function () {
+        //         this.initData();        //初始化数据
+        //         //this.showHelp();        //点击帮助事件
+        //         this.selectMore();      //查询更多 点击事件
+        //         this.certifyState();    //查询条件中 点击认证状态 筛选条件改变
+        //         this.ajaxForm();        //表单ajax提交
+        //         this.check();           //点击checkbox事件
+        //         this.noticeClick();     //提示信息的点击事件
+        //     },
+        //     initData: function () {
+        //         //初始化查询条件
+        //         //认证状态
+        //         var certify_state = "";
+        //         $("#certifyState" + certify_state).attr("checked", true);
+        //         if (certify_state == 1) {
+        //             $("#checkState").hide().siblings("#certifyMethod").show();
+        //         }
+        //         //勾选状态状态
+        //         var check_state = "";
+        //         $("#check_state" + check_state).attr("checked", "checked");
+        //         $("#check_state" + check_state).parents("label").siblings().find("input").attr("checked", false);
+        //         //认证方式
+        //         var certify_method = "";
+        //         if (certify_method == 1) {
+        //             $("#confirm_state" + certify_method).attr("checked", true);
+        //             $("#confirm_state1").parents("label").siblings().find("input").attr("checked", false);
+        //         }
+        //         var certify_method2 = "";
+        //         if (certify_method2 == 1) {
+        //             $("#scan_state1").attr("checked", true);
+        //             $("#scan_state1").parents("label").siblings().find("input").attr("checked", false);
+        //         }
+        //         //发票类型
+        //         var tax_cate = "";
+        //         $("#tax_cate" + tax_cate).attr("checked", true);
+        //         $("#tax_state" + check_state).parents("label").siblings().find("input").attr("checked", false);
+        //         //发票状态
+        //         var state = "";
+        //         $("#state" + state).attr("checked", true);
+        //         $("#state" + state).parents("label").siblings().find("input").attr("checked", false);
+        //         //发票已经认证 则 勾选按钮设置为 disabled
+        //         $(".certify_time").each(function () {
+        //             if ($(this).text().trim() != '') {
+        //                 $(this).siblings().find("checkbox").attr("disabled", "disabled");
+        //             }
+        //         });
+
+        //         //用于勾选状态显示
+        //         $(".value").each(function (i, v) {
+        //             if ($(this).text() == 1) {
+        //                 $("#" + $(this).siblings().text()).attr("checked", true);
+        //             }
+        //             if ($(this).text() == 0) {
+        //                 $("#" + $(this).siblings().text()).attr("checked", false);
+        //             }
+        //         });
+        //     },
+            /* showHelp: function () {
+             $(".help").on("click", function () {
+             layer.open({
+             type: 2,
+             title: 'layer mobile页',
+             shadeClose: true,
+             shade: 0.8,
+             area: ['700px', '90%'],
+             content: "/AccountantOperate/Index/index.html"
+             });
+             });
+             },*/
+        //     selectMore: function () {
+        //         $(".btn-slide").on("click", function () {
+        //             if ($("#panel").css("display") == "none") {
+        //                 $("#panel").slideDown();
+        //                 $(".btn-slide").removeClass("active");
+        //             } else {
+        //                 $("#panel").slideUp();
+        //                 $(".btn-slide").addClass("active");
+        //             }
+
+        //         });
+        //     },
+        //     certifyState: function () {
+        //         $("#certifyState").on("click", "input", function () {
+        //             if ($(this).val() == 1) {
+        //                 //已认证
+        //                 $("#createDate").hide().siblings("#certifyDate").show();
+        //                 $("#checkState").hide().siblings("#certifyMethod").show();
+        //                 //勾选状态隐藏（已经认证的 必定 勾选）
+        //                 $("#check_state1").attr("checked", true);
+        //                 $("#check_state1").parents("label").siblings().find("input").attr("checked", false);
+        //             } else {
+        //                 //未认证
+        //                 $("#createDate").show().siblings("#certifyDate").hide();
+        //                 $("#checkState").show().siblings("#certifyMethod").hide();
+        //                 //默认全部
+        //                 $("#check_state").attr("checked", true);
+        //                 $("#check_state").parents("label").siblings().find("input").attr("checked", false);
+        //             }
+        //         });
+        //         $("#certifyMethod").on("click", " input", function () {
+        //             $(this).attr("checked", true);
+        //             $(this).parents("label").siblings().find("input").attr("checked", false);
+        //         });
+        //     },
+        //     ajaxForm: function () {
+        //         $(".ajaxForm").on("submit", function (event) {
+        //             event.preventDefault();
+        //             if ($('#certifyState1').is(':checked')) {
+        //                 //return false;
+        //             } else {
+        //                 $.ajax({
+        //                     url: $(this).attr("action"),
+        //                     type: $(this).attr("method"),
+        //                     data: $(this).serialize(),
+        //                     dataType: "json",
+        //                     success: function (res) {
+        //                         if (res.status == 0) {
+        //                             layer.alert(res.info, {
+        //                                 icon: 5,
+        //                                 title: '错误提示'
+        //                             });
+        //                         } else {
+        //                             layer.msg(res.info, {
+        //                                 icon: 6,
+        //                                 time: 1000
+        //                             }, function () {
+        //                                 location.href = "/cc-check";
+        //                             });
+        //                         }
+        //                     },
+        //                     error: function (res) {
+        //                         layer.alert("未知错误");
+        //                     }
+        //                 });
+        //             }
+        //         })
+        //     },
+        //     check: function () {
+        //         $("input[type='checkbox']").on("click", function () {
+        //             var state = $(this).is(':checked') ? 1 : 0;
+        //             $.ajax({
+        //                 url: "/AccountantOperate/Check/checkDeal.html",
+        //                 type: "POST",
+        //                 dataType: "json",
+        //                 data: { id: $(this).val(), state: state },
+        //                 success: function (res) {
+        //                     console.log(res);
+        //                 }
+        //             });
+        //         });
+        //     },
+        //     noticeClick: function () {
+        //         $('.notice-help').on('click', function () {
+        //             layer.msg('本系统为教学系统，目前只提供常用操作功能噢');
+        //         });
+        //     }
+        // }
+    </script>
+
+
+</body>
+
+</html>
